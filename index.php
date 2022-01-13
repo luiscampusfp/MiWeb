@@ -55,6 +55,7 @@ if (isset($_POST["reservar"])) {
                     <a href="team.html" class="nav-item nav-link">Chef</a>
                     <a href="menu.html" class="nav-item nav-link">Menu</a>
                     <a href="booking.html" class="nav-item nav-link">Booking</a>
+                    <a href="login.php" class="nav-item nav-link">Iniciar sesión</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu">
