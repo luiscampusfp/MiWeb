@@ -49,7 +49,7 @@ if (isset($_POST["reservar"])) {
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
+                    <a href="index.html" class="nav-item nav-link active">Inicio</a>
                     <a href="about.html" class="nav-item nav-link">About</a>
                     <a href="feature.html" class="nav-item nav-link">Feature</a>
                     <a href="team.html" class="nav-item nav-link">Chef</a>
