@@ -3,16 +3,24 @@ session_start();
 
 if (isset($_POST["iniciar"])) {
     $user = $_POST["mail"];
-    $pass = $_POST["password"];
-    if ($user == "admin@admin.com" && $pass == "123456") {
-        $mensaje = "Usuario y contraseña correcta";
-        $_SESSION['mail'] = $user;
-        $_SESSION['nombre'] = "Administrador";
-        $estado = true;
-        //header('Location: index.php');
-    } else {
-        $mensaje = "Usuario y contraseña incorrecta";
+    $pass = md5($_POST["password"]);
+
+    $conexión = mysqli_connect("localhost", "root", "");
+    if (!$conexión) {
+        $mensaje = "Error de conexion";
         $estado = false;
+    } else {
+        mysqli_select_db($conexión, "burger");
+        $result = mysqli_query($conexión, "select * from usuarios where correo= '" . $user . "' and password='" . $pass . "'");
+        if (mysqli_num_rows($result) == 1) {
+            $mensaje = "Usuario y contraseña correcta";
+            $_SESSION['mail'] = $user;
+            $_SESSION['nombre'] = "Administrador";
+            $estado = true;
+        } else {
+            $mensaje = "Usuario y contraseña incorrecta";
+            $estado = false;
+        }
     }
 }
 ?>

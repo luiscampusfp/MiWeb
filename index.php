@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+echo md5("campusfp");
+
 $titulo1 = "Mi";
 $titulo2 = "Burger";
 if (isset($_POST["reservar"])) {
