@@ -1,10 +1,15 @@
 <?php
+session_start();
+
 if (isset($_POST["iniciar"])) {
     $user = $_POST["mail"];
     $pass = $_POST["password"];
     if ($user == "admin@admin.com" && $pass == "123456") {
         $mensaje = "Usuario y contraseña correcta";
+        $_SESSION['mail'] = $user;
+        $_SESSION['nombre'] = "Administrador";
         $estado = true;
+        //header('Location: index.php');
     } else {
         $mensaje = "Usuario y contraseña incorrecta";
         $estado = false;
@@ -67,6 +72,16 @@ if (isset($_POST["iniciar"])) {
             margin-top: 20px;
         }
     </style>
+    <?php
+    if (isset($estado) && $estado) {
+    ?>
+        <script>
+            setTimeout(() => {
+                window.location.href = "index.php";
+            }, 5000);
+        </script>
+    <?php
+    } ?>
 </head>
 
 <body>

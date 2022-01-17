@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $titulo1 = "Mi";
 $titulo2 = "Burger";
 if (isset($_POST["reservar"])) {
@@ -55,7 +57,17 @@ if (isset($_POST["reservar"])) {
                     <a href="team.html" class="nav-item nav-link">Chef</a>
                     <a href="menu.html" class="nav-item nav-link">Menu</a>
                     <a href="booking.html" class="nav-item nav-link">Booking</a>
-                    <a href="login.php" class="nav-item nav-link">Iniciar sesión</a>
+                    <?php
+                    if (isset($_SESSION['nombre'])) {
+                    ?>
+                        <a href="logout.php" class="nav-item nav-link">Cerrar sesión</a>
+                    <?php
+                    } else {
+                    ?>
+                        <a href="login.php" class="nav-item nav-link">Iniciar sesión</a>
+                    <?php
+                    } ?>
+
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu">
@@ -82,37 +94,11 @@ if (isset($_POST["reservar"])) {
                     <div class="carousel-text">
                         <h1>Best <span>Quality</span> Ingredients</h1>
                         <p>
-                            Lorem ipsum dolor sit amet elit. Phasellus ut mollis mauris. Vivamus egestas eleifend dui ac consequat at lectus in malesuada
-                        </p>
-                        <div class="carousel-btn">
-                            <a class="btn custom-btn" href="">View Menu</a>
-                            <a class="btn custom-btn" href="">Book Table</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-img">
-                        <img src="img/carousel-2.jpg" alt="Image">
-                    </div>
-                    <div class="carousel-text">
-                        <h1>World’s <span>Best</span> Chef</h1>
-                        <p>
-                            Morbi sagittis turpis id suscipit feugiat. Suspendisse eu augue urna. Morbi sagittis, orci sodales varius fermentum, tortor
-                        </p>
-                        <div class="carousel-btn">
-                            <a class="btn custom-btn" href="">View Menu</a>
-                            <a class="btn custom-btn" href="">Book Table</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-img">
-                        <img src="img/carousel-3.jpg" alt="Image">
-                    </div>
-                    <div class="carousel-text">
-                        <h1>Fastest Order <span>Delivery</span></h1>
-                        <p>
-                            Sed ultrices, est eget feugiat accumsan, dui nibh egestas tortor, ut rhoncus nibh ligula euismod quam. Proin pellentesque odio
+                            <?php
+                            if (isset($_SESSION['nombre'])) {
+                                echo "Bienvenido " . $_SESSION['nombre'];
+                            }
+                            ?>
                         </p>
                         <div class="carousel-btn">
                             <a class="btn custom-btn" href="">View Menu</a>
@@ -216,7 +202,7 @@ if (isset($_POST["reservar"])) {
                             if (isset($_POST["reservar"])) {
                             ?>
                                 <div>
-                                    <p style="color: red;">Reserva exitosa a nombre de <?=$nombre?></p>
+                                    <p style="color: red;">Reserva exitosa a nombre de <?= $nombre ?></p>
                                 </div>
                             <?php } ?>
                         </form>
