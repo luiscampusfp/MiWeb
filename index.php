@@ -464,7 +464,7 @@ if (isset($_POST["reservar"])) {
                         <div class="row">
                             <div class="col-lg-7 col-md-12">
                                 <?php
-                                mysqli_data_seek($result,0);
+                                mysqli_data_seek($result, 0);
                                 while ($data = mysqli_fetch_assoc($result)) {
                                     if ($data['categoria'] == "Snacks") {
                                 ?>
@@ -543,6 +543,24 @@ if (isset($_POST["reservar"])) {
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="container">
+            <h3>Agregar elemento al menu</h3>
+            <form action="" method="post">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre"><br>
+                <label for="precio">Precio:</label>
+                <input type="text" name="precio" id="precio"><br>
+                <label for="categoria">Categoria:</label>
+                <select name="categoria" id="categoria">
+                    <option value="Burgers">Burgers</option>
+                    <option value="Snacks">Snacks</option>
+                    <option value="Beverages">Beverages</option>
+                </select><br>
+                <label for="descripcion">Descripción</label><br>
+                <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea><br>
+                <input type="submit" value="Guardar" name="guardar">
+            </form>
         </div>
     </div>
     <!-- Menu End -->
