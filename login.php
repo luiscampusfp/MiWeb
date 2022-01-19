@@ -5,12 +5,11 @@ if (isset($_POST["iniciar"])) {
     $user = $_POST["mail"];
     $pass = md5($_POST["password"]);
 
-    $conexión = mysqli_connect("localhost", "root", "");
+    $conexión = mysqli_connect("localhost", "root", "","burger");
     if (!$conexión) {
         $mensaje = "Error de conexion";
         $estado = false;
     } else {
-        mysqli_select_db($conexión, "burger");
         $result = mysqli_query($conexión, "select * from usuarios where correo= '" . $user . "' and password='" . $pass . "'");
         if (mysqli_num_rows($result) == 1) {
             $mensaje = "Usuario y contraseña correcta";

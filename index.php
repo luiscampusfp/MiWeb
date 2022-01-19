@@ -1,7 +1,10 @@
 <?php
 session_start();
 
-echo md5("campusfp");
+//echo md5("campusfp");
+
+$conexión = mysqli_connect("localhost", "root", "", "burger");
+$result = mysqli_query($conexión, "select * from menu");
 
 $titulo1 = "Mi";
 $titulo2 = "Burger";
@@ -433,52 +436,25 @@ if (isset($_POST["reservar"])) {
                     <div id="burgers" class="container tab-pane active">
                         <div class="row">
                             <div class="col-lg-7 col-md-12">
-                                <div class="menu-item">
-                                    <div class="menu-img">
-                                        <img src="img/menu-burger.jpg" alt="Image">
-                                    </div>
-                                    <div class="menu-text">
-                                        <h3><span>Mini cheese Burger</span> <strong>$9.00</strong></h3>
-                                        <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
-                                    </div>
-                                </div>
-                                <div class="menu-item">
-                                    <div class="menu-img">
-                                        <img src="img/menu-burger.jpg" alt="Image">
-                                    </div>
-                                    <div class="menu-text">
-                                        <h3><span>Double size burger</span> <strong>$11.00</strong></h3>
-                                        <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
-                                    </div>
-                                </div>
-                                <div class="menu-item">
-                                    <div class="menu-img">
-                                        <img src="img/menu-burger.jpg" alt="Image">
-                                    </div>
-                                    <div class="menu-text">
-                                        <h3><span>Bacon, EGG and Cheese</span> <strong>$13.00</strong></h3>
-                                        <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
-                                    </div>
-                                </div>
-                                <div class="menu-item">
-                                    <div class="menu-img">
-                                        <img src="img/menu-burger.jpg" alt="Image">
-                                    </div>
-                                    <div class="menu-text">
-                                        <h3><span>Pulled porx Burger</span> <strong>$18.00</strong></h3>
-                                        <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
-                                    </div>
-                                </div>
-                                <div class="menu-item">
-                                    <div class="menu-img">
-                                        <img src="img/menu-burger.jpg" alt="Image">
-                                    </div>
-                                    <div class="menu-text">
-                                        <h3><span>Fried chicken Burger</span> <strong>$22.00</strong></h3>
-                                        <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
-                                    </div>
-                                </div>
+                                <?php
+                                while ($data = mysqli_fetch_assoc($result)) {
+                                    if ($data['categoria'] == "Burgers") {
+                                ?>
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="img/menu-burger.jpg" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span><?= $data['nombre'] ?></span> <strong>$<?= $data['precio'] ?></strong></h3>
+                                                <p><?= $data['descripcion'] ?></p>
+                                            </div>
+                                        </div>
+                                <?php
+                                    }
+                                }
+                                ?>
                             </div>
+
                             <div class="col-lg-5 d-none d-lg-block">
                                 <img src="img/menu-burger-img.jpg" alt="Image">
                             </div>
@@ -487,42 +463,24 @@ if (isset($_POST["reservar"])) {
                     <div id="snacks" class="container tab-pane fade">
                         <div class="row">
                             <div class="col-lg-7 col-md-12">
-                                <div class="menu-item">
-                                    <div class="menu-img">
-                                        <img src="img/menu-snack.jpg" alt="Image">
-                                    </div>
-                                    <div class="menu-text">
-                                        <h3><span>Corn Tikki - Spicy fried Aloo</span> <strong>$15.00</strong></h3>
-                                        <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
-                                    </div>
-                                </div>
-                                <div class="menu-item">
-                                    <div class="menu-img">
-                                        <img src="img/menu-snack.jpg" alt="Image">
-                                    </div>
-                                    <div class="menu-text">
-                                        <h3><span>Bread besan Toast</span> <strong>$35.00</strong></h3>
-                                        <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
-                                    </div>
-                                </div>
-                                <div class="menu-item">
-                                    <div class="menu-img">
-                                        <img src="img/menu-snack.jpg" alt="Image">
-                                    </div>
-                                    <div class="menu-text">
-                                        <h3><span>Healthy soya nugget snacks</span> <strong>$20.00</strong></h3>
-                                        <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
-                                    </div>
-                                </div>
-                                <div class="menu-item">
-                                    <div class="menu-img">
-                                        <img src="img/menu-snack.jpg" alt="Image">
-                                    </div>
-                                    <div class="menu-text">
-                                        <h3><span>Tandoori Soya Chunks</span> <strong>$30.00</strong></h3>
-                                        <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
-                                    </div>
-                                </div>
+                                <?php
+                                mysqli_data_seek($result,0);
+                                while ($data = mysqli_fetch_assoc($result)) {
+                                    if ($data['categoria'] == "Snacks") {
+                                ?>
+                                        <div class="menu-item">
+                                            <div class="menu-img">
+                                                <img src="img/menu-snack.jpg" alt="Image">
+                                            </div>
+                                            <div class="menu-text">
+                                                <h3><span><?= $data['nombre'] ?></span> <strong>$<?= $data['precio'] ?></strong></h3>
+                                                <p><?= $data['descripcion'] ?></p>
+                                            </div>
+                                        </div>
+                                <?php
+                                    }
+                                }
+                                ?>
                             </div>
                             <div class="col-lg-5 d-none d-lg-block">
                                 <img src="img/menu-snack-img.jpg" alt="Image">
